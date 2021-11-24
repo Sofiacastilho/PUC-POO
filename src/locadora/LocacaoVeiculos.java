@@ -1,6 +1,6 @@
 package locadora;
 
-import java.util.Scanner;
+
 
 public class LocacaoVeiculos {
     CadastroClientes cliente;
@@ -8,6 +8,7 @@ public class LocacaoVeiculos {
     private String dataLocacao;
     private Boolean seguro;
     private int valorDesconto;
+    private int numPassageiros;
     CadastroVeiculos veiculo;
 
     public double calcularLocacaoCarro(){
@@ -40,7 +41,7 @@ public class LocacaoVeiculos {
 
     public double calcularSeguroCarro() {
         float valor = veiculo.getValorLocacaoDiaria();
-        double valorSeguro = (0.05f * valor * (1 + 4/20));
+        double valorSeguro = (0.05f * valor * (1 + numPassageiros/20));
         //System.out.println(valorSeguro);
         return valorSeguro;
     }

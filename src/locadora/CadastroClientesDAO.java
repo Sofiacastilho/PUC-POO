@@ -11,17 +11,24 @@ public class CadastroClientesDAO {
         System.out.println("Nome: ");
         String nome = obterValorString(scan);
 
-        System.out.println("Cpf: ");
+        System.out.println("Cpf (Não digite caracteres especiais): ");
         String cpf = obterValorString(scan);
-
-        System.out.println("Idade: ");
-        int idade = Integer.parseInt(scan.nextLine());
-
-        CadastroClientes pessoa = new CadastroClientes();
-        pessoa.setCpf(cpf);
-        pessoa.setNome(nome);
-        pessoa.setIdade(idade);
-        gravar(pessoa);
+        if (cpf.length()!=11||cpf.contains("A")) {
+            System.out.println("CPF inválido!");
+        }else{
+            System.out.println("Idade: ");
+            int idade = Integer.parseInt(scan.nextLine());
+            if (idade < 18) {
+                System.out.println("Cadastro não autorizado!\nMotivo: Usuário menor de idade!");
+            }else {
+                System.out.println("Cadastro efetuado com sucesso!");
+                CadastroClientes cliente = new CadastroClientes();
+                cliente.setCpf(cpf);
+                cliente.setNome(nome);
+                cliente.setIdade(idade);
+                gravar(cliente);
+            }
+        }
     }
 
     public String obterValorString(Scanner scan){

@@ -7,6 +7,7 @@ public class Teste {
 
     public static void main(String[] args) {
 
+
         Scanner sc = new Scanner(System.in);
 
         int menu = 100;
@@ -28,6 +29,7 @@ public class Teste {
                 }
                 case 2:{
                     menuVeiculos();
+
                     break;
                 }
                 case 3:{
@@ -38,11 +40,12 @@ public class Teste {
 
                 }
             }
-            System.out.println("");
+            //System.out.println("");
         }
     }
 
     public static void menuClientes() {
+        Locadora locadora = new Locadora();
 
         Scanner sc = new Scanner(System.in);
 
@@ -60,11 +63,14 @@ public class Teste {
 
             switch(menu) {
                 case 1:{
+                    Cliente cliente = new Cliente();
 
+                    locadora.cadastraCliente(cliente);
+                    //cliente.validaCliente();
                     break;
                 }
                 case 2:{
-
+                    locadora.listarClientes();
                     break;
                 }
                 case 3:{
@@ -75,12 +81,14 @@ public class Teste {
 
 
             }
-            System.out.println("");
+            //System.out.println("");
         }
     }
 
 
     public static void menuVeiculos() {
+        Locadora locadora = new Locadora();
+        Veiculos veiculos = new Veiculos();
 
         Scanner sc = new Scanner(System.in);
 
@@ -99,27 +107,31 @@ public class Teste {
 
             switch(menu) {
                 case 1:{
+                    locadora.cadastraVeiculo(veiculos);
 
                     break;
                 }
                 case 2:{
+                    locadora.listarVeiculos();
 
                     break;
                 }
                 case 3:{
-
+                    //volta
                     break;
                 }
 
 
 
             }
-            System.out.println("");
+            //System.out.println("");
         }
     }
 
 
     public static void menuLocacao() {
+        Locadora locadora = new Locadora();
+
 
         Scanner sc = new Scanner(System.in);
 
@@ -143,20 +155,20 @@ public class Teste {
                     break;
                 }
                 case 2:{
-
+                    locadora.listarLocacoes();
                     break;
                 }
                 case 3:{
 
                     break;
                 }
-                case 4:{
+                case 4:{//volta
 
                 }
 
 
             }
-            System.out.println("");
+            //System.out.println("");
         }
     }
 

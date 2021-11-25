@@ -65,7 +65,7 @@ public class LeObj {
 
 
 
-        //writePersons("myFile.txt");
+        writePersons("myFile.txt");
         readPersons ("myFile.txt");
     }
 }

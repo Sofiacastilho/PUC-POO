@@ -6,6 +6,12 @@ public class Veiculos {
     private String descricaoVeiculo;
     private String placaVeiculo;
 
+    @Override
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("Veículo [placa=" + this.placaVeiculo + ", descrição=" + this.descricaoVeiculo + ", valor diaria=" + this.valorLocacaoDiaria + "]");
+        return buffer.toString();
+    }
 
     public float getValorLocacaoDiaria() {
         return valorLocacaoDiaria;

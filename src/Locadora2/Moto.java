@@ -3,7 +3,7 @@ package Locadora2;
 public class Moto extends Veiculos{
 
     private Boolean partidaEletricaBoolean;
-    private int partidaEletrica;
+    //private int partidaEletrica;
 
 
     public Boolean getPartidaEletricaBoolean() {
@@ -14,11 +14,5 @@ public class Moto extends Veiculos{
         this.partidaEletricaBoolean = partidaEletricaBoolean;
     }
 
-    public int getPartidaEletrica() {
-        return partidaEletrica;
-    }
 
-    public void setPartidaEletrica(int partidaEletrica) {
-        this.partidaEletrica = partidaEletrica;
-    }
 }

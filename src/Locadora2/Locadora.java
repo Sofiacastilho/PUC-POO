@@ -20,7 +20,6 @@ public class Locadora {
         System.out.println("Informe a idade: ");
         int idade = Integer.parseInt(scan.nextLine());
 
-
         //Cliente cliente = new Cliente();
         cliente.setNome(nome);
         cliente.setCpf(cpf);
@@ -32,6 +31,20 @@ public class Locadora {
 
     public void cadastraVeiculo(Veiculos veiculos) {
         Scanner scan = new Scanner(System.in);
+        System.out.println("Qual veiculo deseja cadastrar? \n1 - Carro\n2 - Moto");
+        int tipo = scan.nextInt();
+
+        if (tipo == 1){
+            cadastraCarro();
+        }else {
+            cadastraMoto();
+        }
+
+    }
+
+
+    public void cadastraCarro(){
+        Scanner scan = new Scanner(System.in);
         System.out.println("Informe a placa: ");
         String placa = scan.nextLine();
 
@@ -41,46 +54,48 @@ public class Locadora {
         System.out.println("Informe o valor: ");
         float valor = Float.parseFloat(scan.nextLine());
 
-        System.out.println("Informe o tipo de veiculo: \n1 - Carro\n2 - Moto");
-        int tipo = scan.nextInt();
+        Carro carro = new Carro();
+        System.out.println("Informe a quantidade de passageiros");
+        int qtdPassageiros = scan.nextInt();
 
-        if(tipo == 1){
-            Carro carro = new Carro();
-            System.out.println("Informe a quantidade de passageiros");
-            int qtdPassageiros = scan.nextInt();
-            carro.setQtdPassageiros(qtdPassageiros);
+        carro.setQtdPassageiros(qtdPassageiros);
+        carro.setPlacaVeiculo(placa);
+        carro.setDescricaoVeiculo(descricao);
+        carro.setValorLocacaoDiaria(valor);
 
-        }else if(tipo == 2){
-            Moto moto = new Moto();
-            System.out.println("Informe se há partida elétrica\n1 - Há\n2 - Não há");
-            int partidaEletrica = scan.nextInt();
-
-            switch (partidaEletrica){
-                case 1:{
-                    boolean partidaEletricaBoolean = true;
-                    moto.setPartidaEletricaBoolean(partidaEletricaBoolean);
-                    System.out.println("Há");
-                    break;
-                }
-                case 2:{
-                    boolean partidaEletricaBoolean = false;
-                    moto.setPartidaEletricaBoolean(partidaEletricaBoolean);
-                    System.out.println("Não há");
-                    break;
-                }
-                default:
-                    System.out.println("opção invalida");
-            }
-        }
-        veiculos.setPlacaVeiculo(placa);
-        veiculos.setDescricaoVeiculo(descricao);
-        veiculos.setValorLocacaoDiaria(valor);
-
-        getListaVeiculos().add(veiculos);
+        getListaVeiculos().add(carro);
     }
 
+    public void cadastraMoto(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Informe a placa: ");
+        String placa = scan.nextLine();
 
+        System.out.println("Informe a descrição: ");
+        String descricao = scan.nextLine();
 
+        System.out.println("Informe o valor: ");
+        float valor = Float.parseFloat(scan.nextLine());
+
+        Moto moto = new Moto();
+        System.out.println("Informe se há partida elétrica\n1 - Há\n2 - Não há");
+        int eletrica = scan.nextInt();
+        boolean partidaEletricaBoolean;
+
+        if (eletrica == 1){
+            partidaEletricaBoolean = true;
+        }else {
+            partidaEletricaBoolean = false;
+
+        }
+
+        moto.setPlacaVeiculo(placa);
+        moto.setDescricaoVeiculo(descricao);
+        moto.setValorLocacaoDiaria(valor);
+        moto.setPartidaEletricaBoolean(partidaEletricaBoolean);
+
+        getListaVeiculos().add(moto);
+    }
 
 
 

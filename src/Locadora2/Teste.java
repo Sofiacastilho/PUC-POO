@@ -4,12 +4,9 @@ import java.util.Scanner;
 
 public class Teste {
     //add try catch e default no switch
-
     public static void main(String[] args) {
 
-
         Scanner sc = new Scanner(System.in);
-
         int menu = 100;
 
         while(menu!= 4) {
@@ -77,9 +74,6 @@ public class Teste {
 
                     break;
                 }
-
-
-
             }
             //System.out.println("");
         }
@@ -120,9 +114,6 @@ public class Teste {
                     //volta
                     break;
                 }
-
-
-
             }
             //System.out.println("");
         }
@@ -165,8 +156,6 @@ public class Teste {
                 case 4:{//volta
 
                 }
-
-
             }
             //System.out.println("");
         }

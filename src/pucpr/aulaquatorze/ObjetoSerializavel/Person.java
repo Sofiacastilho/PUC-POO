@@ -1,10 +1,15 @@
 package pucpr.aulaquatorze.ObjetoSerializavel;
 import java.io.Serializable;
 public class Person implements Serializable {
+
     private String firstName;
     private String lastName;
     private int age;
-    public Person() { }
+
+
+
+
+
     public String getFirstName() {
         return firstName;
     }

@@ -1,15 +1,21 @@
 package Locadora2;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class LocacaoVeiculos {
 
     private Cliente cliente;
     private Veiculos veiculos;
     private Integer numeroDiasLocacao;
     private String dataLocacao;
-    private Boolean seguro;
+    private boolean seguro;
     private int valorDesconto;
-    private Carro carro;
-    private Moto moto;
+    private double valorLocacao = 0;
+    private String placa;
+    private String cpf;
+
+    Locadora locadora = new Locadora();
 
     @Override
     public String toString() { //lista a locação
@@ -20,49 +26,122 @@ public class LocacaoVeiculos {
         return buffer.toString();
     }
 
+    public void locaVeiculo(){
+        Scanner scan = new Scanner(System.in);
+        /*Na locação de um veículo deve ser informado:
+    O cliente que está locando o veículo
+    O número de dias da locação
+    A data da locação
+    Se a locação é com seguro ou não.
+    Valor do desconto. */
+
+        System.out.println("Informe o cpf");
+        cpf = scan.nextLine();
+        Cliente clienteAchado = null;
+        for(Cliente clienteBusca : locadora.getListaCliente()){
+            if(clienteBusca.getCpf() == cpf){
+                clienteAchado = clienteBusca;
+
+            }
+        }
+        if(clienteAchado!=null){
+            clienteAchado.getCpf();
+        }else{
+            System.out.println("Cliente não encontrado para " + cpf);
+        }
+
+    }
+
+        //-----carro--------
 
     public double calcularLocacaoCarro() {
-        float valor = veiculos.getValorLocacaoDiaria();
-        double valorLocacao;
-        if (seguro == true) {
-            valorLocacao = (valor * numeroDiasLocacao) + calcularSeguroCarro();
-            System.out.println(valorLocacao);
-        } else {
-            valorLocacao = (valor * numeroDiasLocacao);
-            System.out.println(valorLocacao);
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Digite o valor de locação: ");
+        double valorLocacao = scan.nextDouble();
+        System.out.println("Digite quantos dias será locado: ");
+        int numeroDiasLocacao = scan.nextInt();
+        System.out.println("Deseja seguro?\n1 - SIM\n2 - não ");
+        int opcao = scan.nextInt();
+        
+        //boolean seguro;
+        switch (opcao){
+            case 1:{
+                seguro = true;
+
+                System.out.println("Digite a quantidade de passageiros: ");
+                int qtdPassageiros = scan.nextInt();
+                double calcularSeguroCarro = (0.05f * valorLocacao * (1 + qtdPassageiros / 20));
+
+                valorLocacao = (valorLocacao * numeroDiasLocacao) + (calcularSeguroCarro * numeroDiasLocacao);
+                System.out.println(valorLocacao);
+                break;
+               
+            } case 2: {
+                seguro = false;
+                valorLocacao = (valorLocacao * numeroDiasLocacao);
+                System.out.println(valorLocacao);
+                break;
+            }
+            default:
+                System.out.println("Escolha algo valido.");
         }
+
+        
         return valorLocacao;
     }
 
     public double calcularSeguroCarro() {
-        float valor = veiculos.getValorLocacaoDiaria();
-        double valorSeguro = (0.05f * valor * (1 + carro.getQtdPassageiros() / 20));
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite o valor de locação: ");
+        double valorLocacao = scan.nextDouble();
+        System.out.println("Digite a quantidade de passageiros: ");
+        int qtdPassageiros = scan.nextInt();
+        double valorSeguro = (0.05f * valorLocacao * (1 + qtdPassageiros / 20));
         //System.out.println(valorSeguro);
         return valorSeguro;
     }
 
+        //-----moto--------
 
     public double calcularLocacaoMoto(){
-        float valor = veiculos.getValorLocacaoDiaria();
-        double valorLocacao;
-        if ( seguro == true){
-            valorLocacao = (valor * numeroDiasLocacao) + calcularSeguroMoto();
-            System.out.println(valorLocacao);
-        }
-        else {
-            valorLocacao = (valor * numeroDiasLocacao);
-            System.out.println(valorLocacao);
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Digite quantos dias será locado: ");
+        int numeroDiasLocacao = scan.nextInt();
+        System.out.println("Deseja seguro?\n1 - SIM\n2 - não ");
+        int opcao = scan.nextInt();
+
+        switch (opcao){
+            case 1:{
+                seguro = true;
+
+                System.out.println("Digite o valor de locação: ");
+                double valorLocacao = scan.nextDouble();
+                double calcularSeguroMoto = (0.09f * valorLocacao);
+
+
+                valorLocacao = (valorLocacao * numeroDiasLocacao) + (numeroDiasLocacao * calcularSeguroMoto);
+                System.out.println(valorLocacao);
+                break;
+
+            } case 2: {
+                seguro = false;
+
+                System.out.println("Digite o valor de locação: ");
+                double valorLocacao = scan.nextDouble();
+                valorLocacao = (valorLocacao * numeroDiasLocacao);
+                System.out.println(valorLocacao);
+                break;
+            }
+            default:
+                System.out.println("Escolha algo valido.");
         }
         return valorLocacao;
     }
 
-    public Float calcularSeguroMoto() {
-        float valor = veiculos.getValorLocacaoDiaria();
-        float valorSeguro = (0.09f * valor);
-        //System.out.println(valorSeguro);
-        return valorSeguro;
-    }
 
+    //-----get e set--------
 
     public Cliente getCliente() {
         return cliente;

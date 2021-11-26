@@ -1,9 +1,12 @@
 package pucpr.aulaquatorze.ObjetoSerializavel;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LeObj {
+
+    private ArrayList<Person> listaPessoas = new ArrayList<>();
 
     public static void readPersons(String filename) {
         ObjectInputStream inputStream = null;
@@ -37,11 +40,18 @@ public class LeObj {
         try {
             outputStream = new ObjectOutputStream (new FileOutputStream(filename));
             Scanner scan = new Scanner(System.in);
-            Person person = new Person();
-            person.setFirstName(scan.next());
-            person.setLastName(scan.next());
-            person.setAge(scan.nextInt());
-            outputStream.writeObject(person); //só escreve porque Person é seralizável
+
+            int i;
+            for (i=0; i<3; i++){
+                Person person = new Person();
+                person.setFirstName(scan.next());
+                person.setLastName(scan.next());
+                person.setAge(scan.nextInt());
+                outputStream.writeObject(person); //só escreve porque Person é seralizável
+            }
+
+
+
 
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -59,13 +69,18 @@ public class LeObj {
         }
     }
 
+    public ArrayList<Person> getListaPessoas() {
+        return listaPessoas;
+    }
+
+    public void setListaPessoas(ArrayList<Person> listaPessoas) {
+        this.listaPessoas = listaPessoas;
+    }
 
     public static void main(String[] args) {
+        //Person person = new Person();
 
-
-
-
-        writePersons("myFile.txt");
+        //writePersons("myFile.txt");
         readPersons ("myFile.txt");
     }
 }

@@ -8,6 +8,7 @@ public class Cliente implements Serializable {
     private String nome;
     private String cpf;
     private int idade;
+    private int codigo;
 
     @Override
     public String toString() {
@@ -23,29 +24,28 @@ public class Cliente implements Serializable {
     }
 
 
-    public String obterValorString(Scanner scan){
-
-        String retorno = null;
-
-        while (retorno == null || retorno.trim().equalsIgnoreCase("")){
-            System.out.println("Digite algo válido.");
-            retorno = scan.nextLine();
-        }
-        return retorno;
-    }
-
-
-
-
-    public static void gravaPessoa(String filename) {
+    public void gravaPessoa(String filename) {
         ObjectOutputStream outputStream = null;
 
         try {
             outputStream = new ObjectOutputStream (new FileOutputStream(filename));
-            Locadora locadora = new Locadora();
-            //cliente.validaCliente();
 
-            outputStream.writeObject(locadora.getListaCliente()); //só escreve porque Person é seralizável
+            Scanner scan = new Scanner(System.in);
+
+            for (int i=0; i<3; i++){
+                Cliente cliente = new Cliente();
+                System.out.println("Digite o numero do cadastro: ");
+                cliente.setCodigo(scan.nextInt());
+
+                System.out.println("Nome: ");
+                cliente.setNome(scan.next());
+                System.out.println("Cpf: ");
+                cliente.setCpf(scan.next());
+                System.out.println("Idade: ");
+                cliente.setIdade(scan.nextInt());
+
+                outputStream.writeObject(cliente); //só escreve porque Person é seralizável
+            }
 
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -70,8 +70,8 @@ public class Cliente implements Serializable {
             inputStream = new ObjectInputStream (new FileInputStream(filename));
             Object obj = null;
             while ((obj = inputStream.readObject()) != null) {
-                if (obj instanceof Locadora) // read a generic object obj
-                    System.out.println(((Locadora)obj).toString()); // cast to Cliente
+                if (obj instanceof Cliente) // read a generic object obj
+                    System.out.println(((Cliente)obj).toString()); // cast to Cliente
             }
         } catch (EOFException ex) { // when EOF is reached
             System.out.println("End of file reached.");
@@ -118,5 +118,14 @@ public class Cliente implements Serializable {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+
     }
 }

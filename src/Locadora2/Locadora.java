@@ -9,6 +9,8 @@ public class Locadora {
     private ArrayList<Veiculos> listaVeiculos = new ArrayList<>();
     private ArrayList<LocacaoVeiculos> listaLocacaoVeiculos = new ArrayList<>();
 
+    //-----cadastros--------
+
     public void cadastraCliente(Cliente cliente) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Informe o nome: ");
@@ -26,10 +28,9 @@ public class Locadora {
         cliente.setIdade(idade);
 
         getListaCliente().add(cliente);
-    }
+    } //ok
 
-
-    public void cadastraVeiculo(Veiculos veiculos) {
+    public void cadastraVeiculo(Veiculos veiculos) { //ok
         Scanner scan = new Scanner(System.in);
         System.out.println("Qual veiculo deseja cadastrar? \n1 - Carro\n2 - Moto");
         int tipo = scan.nextInt();
@@ -39,9 +40,7 @@ public class Locadora {
         }else {
             cadastraMoto();
         }
-
-    }
-
+    }//ok
 
     public void cadastraCarro(){
         Scanner scan = new Scanner(System.in);
@@ -51,9 +50,6 @@ public class Locadora {
         System.out.println("Informe a descrição: ");
         String descricao = scan.nextLine();
 
-        System.out.println("Informe o valor: ");
-        float valor = Float.parseFloat(scan.nextLine());
-
         Carro carro = new Carro();
         System.out.println("Informe a quantidade de passageiros");
         int qtdPassageiros = scan.nextInt();
@@ -61,10 +57,9 @@ public class Locadora {
         carro.setQtdPassageiros(qtdPassageiros);
         carro.setPlacaVeiculo(placa);
         carro.setDescricaoVeiculo(descricao);
-        carro.setValorLocacaoDiaria(valor);
 
         getListaVeiculos().add(carro);
-    }
+    }//ok
 
     public void cadastraMoto(){
         Scanner scan = new Scanner(System.in);
@@ -73,9 +68,6 @@ public class Locadora {
 
         System.out.println("Informe a descrição: ");
         String descricao = scan.nextLine();
-
-        System.out.println("Informe o valor: ");
-        float valor = Float.parseFloat(scan.nextLine());
 
         Moto moto = new Moto();
         System.out.println("Informe se há partida elétrica\n1 - Há\n2 - Não há");
@@ -86,19 +78,17 @@ public class Locadora {
             partidaEletricaBoolean = true;
         }else {
             partidaEletricaBoolean = false;
-
         }
 
         moto.setPlacaVeiculo(placa);
         moto.setDescricaoVeiculo(descricao);
-        moto.setValorLocacaoDiaria(valor);
         moto.setPartidaEletricaBoolean(partidaEletricaBoolean);
 
         getListaVeiculos().add(moto);
-    }
+    }//ok
 
 
-
+    //-----listagem--------
 
     public void listarClientes() {
 
@@ -121,6 +111,8 @@ public class Locadora {
         }
     }
 
+
+    //-----get e set--------
 
     public ArrayList<Cliente> getListaCliente() {
         return listaCliente;

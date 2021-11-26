@@ -43,10 +43,9 @@ public class Teste {
 
     public static void menuClientes() {
         Locadora locadora = new Locadora();
-
         Scanner sc = new Scanner(System.in);
 
-        int menu = 100;
+        int menu = 0;
 
         while(menu!= 3) {
             System.out.println("-- Menu Clientes---");
@@ -54,20 +53,21 @@ public class Teste {
             System.out.println("1 - Cadastrar Cliente");
             System.out.println("2 - Listar Clientes");
             System.out.println("3 - Voltar");
-            System.out.println("----------------------------------");
-
+            //System.out.println("----------------------------------");
+            Cliente cliente = new Cliente();
             menu = sc.nextInt();
 
             switch(menu) {
                 case 1:{
-                    Cliente cliente = new Cliente();
 
-                    locadora.cadastraCliente(cliente);
+                    cliente.gravaPessoa("listaClientes"+ cliente.getCodigo() +".txt");
                     //cliente.validaCliente();
                     break;
                 }
                 case 2:{
-                    locadora.listarClientes();
+
+                    cliente.lePessoa("listaClientes"+ cliente.getCodigo() +".txt");
+                    //locadora.listarClientes();
                     break;
                 }
                 case 3:{
@@ -83,9 +83,7 @@ public class Teste {
     public static void menuVeiculos() {
         Locadora locadora = new Locadora();
         Veiculos veiculos = new Veiculos();
-
         Scanner sc = new Scanner(System.in);
-
         int menu = 100;
 
         while(menu!= 3) {
@@ -94,19 +92,20 @@ public class Teste {
             System.out.println("1 - Cadastrar veiculos");
             System.out.println("2 - Listar veiculos");
             System.out.println("3 - Voltar");
-            System.out.println("----------------------------------");
-
+            //System.out.println("----------------------------------");
 
             menu = sc.nextInt();
 
             switch(menu) {
                 case 1:{
-                    locadora.cadastraVeiculo(veiculos);
+                    //locadora.cadastraVeiculo(veiculos);
+                    veiculos.gravaVeiculo("listaVeiculos.txt");
 
                     break;
                 }
                 case 2:{
-                    locadora.listarVeiculos();
+                    //locadora.listarVeiculos();
+                    veiculos.leVeiculo("listaVeiculos.txt");
 
                     break;
                 }
@@ -122,8 +121,7 @@ public class Teste {
 
     public static void menuLocacao() {
         Locadora locadora = new Locadora();
-
-
+        LocacaoVeiculos locacaoVeiculos = new LocacaoVeiculos();
         Scanner sc = new Scanner(System.in);
 
         int menu = 100;
@@ -135,14 +133,22 @@ public class Teste {
             System.out.println("2 - Listar locações");
             System.out.println("3 - Listar veículos locados");
             System.out.println("4 - Voltar");
-            System.out.println("----------------------------------");
-
+            //System.out.println("----------------------------------");
 
             menu = sc.nextInt();
 
             switch(menu) {
                 case 1:{
+                    Scanner scan = new Scanner(System.in);
 
+                    System.out.println("Qual veiculo deseja locar? \n1 - Carro\n2 - Moto");
+                    int tipo = scan.nextInt();
+
+                    if (tipo == 1){
+                        locacaoVeiculos.calcularLocacaoCarro();
+                    }else {
+                        locacaoVeiculos.calcularLocacaoMoto();
+                    }
                     break;
                 }
                 case 2:{
@@ -160,6 +166,4 @@ public class Teste {
             //System.out.println("");
         }
     }
-
-
 }

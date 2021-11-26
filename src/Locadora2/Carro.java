@@ -12,10 +12,3 @@ public class Carro extends Veiculos{
         this.qtdPassageiros = qtdPassageiros;
     }
 }
-/*moto.setPartidaEletricaBoolean(partidaEletricaBoolean);
-carro.setQtdPassageiros(qtdPassageiros);
-        veiculos.setPlacaVeiculo(placa);
-        veiculos.setDescricaoVeiculo(descricao);
-        veiculos.setValorLocacaoDiaria(valor);
-
-        getListaVeiculos().add(veiculos);*/
